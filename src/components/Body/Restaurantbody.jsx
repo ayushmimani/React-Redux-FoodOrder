@@ -173,7 +173,7 @@ function Restaurantbody() {
     );
     const jsondata = await data.json();
     const cardsinfo =
-      jsondata.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+      jsondata.data.cards[3].card.card.gridElements.infoWithStyle.restaurants;
     setlistdata(cardsinfo);
     setfilterrest(cardsinfo);
   };
