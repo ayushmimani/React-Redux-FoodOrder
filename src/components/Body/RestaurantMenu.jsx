@@ -1,26 +1,14 @@
-import { useState, useEffect } from "react";
 import Shimmer from "../shimmerLoader/Shimmerui";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../Utils/useRestaurantMenu";
 
 function RestaurantMenu() {
-  useEffect(() => {
-    fetchmenu();
-  }, []);
-
   const { resid } = useParams();
-  const [resinfo, setresinfo] = useState(null);
-
   const CDN_URL =
     "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
-  const menu_api =
-    "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.488172&lng=78.3879387&restaurantId=" +
-    resid;
-  const fetchmenu = async () => {
-    const data = await fetch(menu_api);
-    const jsondata = await data.json();
-    setresinfo(jsondata.data);
-  };
+  // fetch menu api it is custom hook
+  const resinfo = useRestaurantMenu(resid);
 
   if (resinfo === null) return <Shimmer />;
 

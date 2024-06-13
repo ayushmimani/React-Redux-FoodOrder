@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -9,6 +9,8 @@ import PageNotFound from "./components/PageNotfound.jsx";
 import Container from "./components/Body/Container";
 import Contact from "./components/Contact.jsx";
 import RestaurantMenu from "./components/Body/RestaurantMenu.jsx";
+
+const Grocery = lazy(() => import("./components/Body/Grocery.jsx"));
 
 const approute = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const approute = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/Grocery",
+        element: (
+          <Suspense fallback={"Loading..."}>
+            <Grocery />
+          </Suspense>
+        ),
       },
       {
         path: "/menu/:resid",
