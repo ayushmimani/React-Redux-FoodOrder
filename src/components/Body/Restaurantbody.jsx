@@ -181,6 +181,7 @@ function Restaurantbody() {
   useEffect(() => {
     fetchdata();
   }, []);
+
   const filterrestaurant = (listdata) => {
     setfilterrest(listdata.filter((toprest) => toprest.info.avgRating >= 4));
   };
@@ -221,7 +222,6 @@ function Restaurantbody() {
       <div className="flex flex-wrap">
         {filterrest.map((restaurant) => (
           <Link key={restaurant.info.id} to={"menu/" + restaurant.info.id}>
-            {" "}
             <Restaurantcard restdata={restaurant} />
           </Link>
         ))}

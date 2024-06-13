@@ -18,4 +18,6 @@ function Restaurantcard({ restdata }) {
   );
 }
 
+// higher order component
+
 export default Restaurantcard;
