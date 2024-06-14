@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import UserContext from "../Utils/UserContext";
 
 function Header() {
   const OnlineStatus = useOnlineStatus();
   const [login, setlogin] = useState("Login");
+  const { username } = useContext(UserContext);
+  console.log(username);
   return (
     <div className="flex justify-between bg-teal-50 shadow-lg">
       <div className="logo-conatiner">
@@ -27,6 +30,7 @@ function Header() {
             <Link to="/grocery">Grocery</Link>
           </li>
           <li className="px-4">Cart</li>
+          <li className="px-4">{username}</li>
           <button
             onClick={() => {
               login === "Login" ? setlogin("Logout") : setlogin("Login");
