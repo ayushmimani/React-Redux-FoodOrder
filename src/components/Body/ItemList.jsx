@@ -1,6 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Utils/CartSlice";
 
 function ItemList({ items }) {
+  const dispatch = useDispatch();
+  const handleitem = (item) => {
+    dispatch(addItem(item));
+  };
+
   const CDN_URL =
     "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
   return (
@@ -26,7 +33,10 @@ function ItemList({ items }) {
           <div className="w-3/12 ">
             <img src={CDN_URL + item.card.info.imageId} className="w-full" />
             <div className="absolute ">
-              <button className="bg-black text-white mx-14 rounded-lg shadow-sm">
+              <button
+                className="bg-black text-white mx-14 rounded-lg shadow-sm"
+                onClick={() => handleitem(item)}
+              >
                 Add +
               </button>
             </div>

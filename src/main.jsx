@@ -9,6 +9,9 @@ import PageNotFound from "./components/PageNotfound.jsx";
 import Container from "./components/Body/Container";
 import Contact from "./components/Contact.jsx";
 import RestaurantMenu from "./components/Body/RestaurantMenu.jsx";
+import { Provider } from "react-redux";
+import appStore from "./components/Utils/appStore.jsx";
+import Cart from "./components/Body/Cart.jsx";
 
 const Grocery = lazy(() => import("./components/Body/Grocery.jsx"));
 
@@ -30,6 +33,10 @@ const approute = createBrowserRouter([
         element: <Contact />,
       },
       {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
         path: "/Grocery",
         element: (
           <Suspense fallback={"Loading..."}>
@@ -48,8 +55,10 @@ const approute = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={approute}>
-      <App />
-    </RouterProvider>
+    <Provider store={appStore}>
+      <RouterProvider router={approute}>
+        <App />
+      </RouterProvider>
+    </Provider>
   </React.StrictMode>
 );

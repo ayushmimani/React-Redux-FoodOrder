@@ -2,12 +2,14 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Utils/useOnlineStatus";
 import UserContext from "../Utils/UserContext";
+import { useSelector } from "react-redux";
 
 function Header() {
   const OnlineStatus = useOnlineStatus();
   const [login, setlogin] = useState("Login");
   const { username } = useContext(UserContext);
-  console.log(username);
+
+  const cartitmes = useSelector((store) => store.cart.items.length);
   return (
     <div className="flex justify-between bg-teal-50 shadow-lg">
       <div className="logo-conatiner">
@@ -29,7 +31,14 @@ function Header() {
           <li>
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li className="px-4">Cart</li>
+          <li className="px-4">
+            <Link to="/cart">
+              🛒{" "}
+              <span className="font-bold text-xl">
+                ({cartitmes === 1 ? `${cartitmes} item` : `${cartitmes} items`}){" "}
+              </span>
+            </Link>
+          </li>
           <li className="px-4">{username}</li>
           <button
             onClick={() => {
